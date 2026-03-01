@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Playlist Downloader</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: #242424;
+      color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+  </style>
+</head>
+<body class="p-6 flex flex-col h-screen">
+  
+  <h1 class="text-3xl font-bold text-center mb-8 text-gray-200">YouTube Playlist Downloader</h1>
+
+  <!-- Playlist URL -->
+  <div class="mb-4 flex items-center gap-4">
+    <label class="w-32 text-gray-400 font-semibold text-right">Playlist URL:</label>
+    <input type="text" id="url" placeholder="Paste YouTube Playlist Link Here" class="flex-1 bg-gray-800 border border-gray-600 rounded p-2 focus:outline-none focus:border-blue-500 text-sm">
+  </div>
+
+  <!-- Save To -->
+  <div class="mb-4 flex items-center gap-4">
+    <label class="w-32 text-gray-400 font-semibold text-right">Save To:</label>
+    <input type="text" id="path" readonly class="flex-1 bg-gray-800 border border-gray-600 rounded p-2 text-sm text-gray-300">
+    <button id="browse-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm transition transition-colors">Browse</button>
+  </div>
+
+  <!-- Format & Resolution -->
+  <div class="mb-4 flex items-center gap-4">
+    <label class="w-32 text-gray-400 font-semibold text-right">Format:</label>
+    <select id="format" class="bg-gray-800 border border-gray-600 rounded p-2 text-sm w-32 focus:outline-none focus:border-blue-500">
+      <option value="MP4">MP4</option>
+      <option value="MP3">MP3</option>
+    </select>
+
+    <label class="w-24 text-gray-400 font-semibold text-right">Resolution:</label>
+    <select id="resolution" class="bg-gray-800 border border-gray-600 rounded p-2 text-sm w-32 focus:outline-none focus:border-blue-500">
+      <option value="Highest">Highest</option>
+      <option value="1080p">1080p</option>
+      <option value="720p">720p</option>
+      <option value="480p">480p</option>
+      <option value="360p">360p</option>
+    </select>
+  </div>
+
+  <!-- Video Range -->
+  <div class="mb-6 flex items-center gap-4">
+    <label class="w-32 text-gray-400 font-semibold text-right">Start Video:</label>
+    <input type="number" id="start-video" placeholder="e.g. 1" min="1" class="bg-gray-800 border border-gray-600 rounded p-2 text-sm w-32 focus:outline-none focus:border-blue-500">
+
+    <label class="w-24 text-gray-400 font-semibold text-right">End Video:</label>
+    <input type="number" id="end-video" placeholder="e.g. 20" min="1" class="bg-gray-800 border border-gray-600 rounded p-2 text-sm w-32 focus:outline-none focus:border-blue-500">
+  </div>
+
+  <!-- Details / Progress -->
+  <div class="flex-1 flex flex-col justify-center gap-2 mb-6 text-center">
+    <p id="status-text" class="text-gray-400 text-sm h-5 truncate px-10">Ready</p>
+    <div class="w-full bg-gray-700 rounded-full h-2">
+      <div id="progress-bar" class="bg-blue-600 h-2 rounded-full w-0 transition-all duration-300"></div>
+    </div>
+  </div>
+
+  <!-- Buttons -->
+  <div class="flex justify-center gap-4 mb-8">
+    <button id="download-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded shadow-lg transition-transform transform hover:scale-105">
+      Download Playlist
+    </button>
+    <button id="cancel-btn" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded shadow-lg transition-transform transform hover:scale-105 opacity-50 cursor-not-allowed" disabled>
+      Cancel
+    </button>
+  </div>
+
+  <!-- Adsterra Banner -->
+  <div class="flex justify-center mb-6">
+    <div class="w-[728px] h-[90px] bg-gray-800 flex items-center justify-center overflow-hidden">
+        <script>
+        atOptions = {
+            'key' : 'a678b7ca6a2a031c0b03920212f6e2aa',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+        </script>
+        <script src="https://www.highperformanceformat.com/a678b7ca6a2a031c0b03920212f6e2aa/invoke.js"></script>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="text-center text-gray-500 text-xs flex flex-col items-center gap-2 mt-auto">
+    <span class="font-bold">Dev By Nipuna Dilshan</span>
+    <div class="flex gap-4">
+      <a href="#" onclick="require('electron').shell.openExternal('https://github.com/nipuna-developer')" class="bg-gray-800 hover:bg-gray-700 text-white py-1 px-3 rounded transition-colors">GitHub</a>
+      <a href="#" onclick="require('electron').shell.openExternal('https://www.linkedin.com/in/nipuna-dilshan')" class="bg-blue-600 hover:bg-blue-700 text-white py-1 px-3 rounded transition-colors">LinkedIn</a>
+    </div>
+  </div>
+
+  <script src="./renderer.js"></script>
+</body>
+</html>
